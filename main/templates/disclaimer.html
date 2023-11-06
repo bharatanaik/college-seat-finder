@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+Disclaimer | College Seat Finder
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1 class="m-2">Disclaimer</h1>
+    <ul class="list-group">
+        <li class="list-group-item">1. All data are as per last year admission information released by:
+            <ul>
+                <li>KEA – Karnataka Examination Authority</li>
+                <li>ComedK – Consortium of Medical, Engineering and Dental Colleges of Karnataka</li>
+                <li>MCI – Medical Council of India</li>
+            </ul>
+        </li>
+        <li class="list-group-item">2. Cutoff Rank changes every year. Last year cutoff rank should be taken for
+            reference only.</li>
+        <li class="list-group-item">3. Fees structure change every year as per Government notification.</li>
+        <li class="list-group-item">4. Management fees structure provided by college management committee is displayed.
+        </li>
+        <li class="list-group-item"> <b id="id_blink">To Know available management seats, Fees Structure & admission assistance kindly Call or Whatsapp to
+            +919137386752</b></li>
+    </ul>
+   
+</div>
+
+
+
+<style>
+    #id_blink {
+        animation: blinking 4s linear infinite;
+    }
+
+    @keyframes blinking{
+        50% {
+            opacity: 0.5;
+        }
+    }
+</style>
+{% endblock content %}

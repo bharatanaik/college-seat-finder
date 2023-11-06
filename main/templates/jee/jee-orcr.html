@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+JEE OPENING AND CLOSING RANK 2023
+{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <h1>JEE Opening and closing rank analyser</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-3 shadow mb-3">
+                <div class="mb-3">
+                    <label for="id_institute_type" class="form-label">Institute Type:</label>
+                    <select class="form-control" id="id_institute_type" onchange="get_institutes(this.value)">
+                        <option value="--select--" selected>--select--</option>
+                        {% for i, j in institute_types %}
+                        <option value="{{i}}">{{j}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_academic_year" class="form-label">Select the Academic Year:</label>
+                    <select class="form-control" id="id_academic_year" onchange="get_result()">4
+                        {% for i, j in years %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3" id="id_college_block">
+                    <label for="id_institute_name" class="form-label">Name of the Institute:</label>
+                    <select class="form-control" id="id_institute_name" onchange="get_courses()">
+                    </select>
+                </div>
+                <div class="mb-3" id="id_course_block">
+                    <label for="id_course_name" class="form-label">Course Name:</label>
+                    <select class="form-control" id="id_course_name" onchange="get_result()">
+
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_quota" class="form-label">Quota:</label>
+                    <select class="form-control" id="id_quota" onchange="get_result()">
+                        {% for i, j in quotas %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_seat_type" class="form-label">Seat category type:</label>
+                    <select class="form-control" id="id_seat_type" onchange="get_result()">
+                        {% for i, j in seat_types %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_gender" class="form-label">Gender:</label>
+                    <select class="form-control" id="id_gender" onchange="get_result()">
+                        <option value="Gender-Neutral" selected>Gender-Neutral</option>
+                        <option value="Female-only (including Supernumerary)">Female-only (including Supernumerary)
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_round" class="form-label">Counselling round:</label>
+                    <select class="form-control" id="id_round" onchange="get_result()">
+                        {% for i, j in rounds %}
+                        <option value="{{i}}">{{j}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pb-3" id="scroll_to_me">
+            <div id="id_result">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader"></div>
+<i id="id_scroll_up"></i>
+<script src="{% static 'js/scrollup.js' %}"></script>
+<script src="{% static 'js/jee-orcr.js' %}"></script>
+{% endblock content %}

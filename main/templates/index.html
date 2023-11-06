@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+College Seat Finder | Find It Right
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <a class="btn btn-outline-dark my-3 position-relative me-5" href="{% url 'neet-seat-matrix' %}"><i
+            class="bi bi-heart-pulse me-2"></i></i>NEET Seat Matrix 2023
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">new</span>
+    </a>
+    <a class="btn btn-outline-dark my-3 position-relative" href="{% url 'courses' %}"><i
+            class="bi bi-award  me-2"></i>KCET COURSE EXPLORER
+    </a>
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-mortarboard"></i> <b>KCET Helper Kit 2023</b></h5>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark float-start"
+                        href="{% url 'kcet-cutoff' %}"><i class="bi bi-patch-check me-1"></i>KCET Cutoff Rank Analyser
+                        2023</a></li>
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'college-cutoff' %}"><i class="bi bi-patch-check me-1"></i>KCET College Analyser
+                        2023</a></li>
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'seat-analyser' %}"><i class="bi bi-patch-check me-1"></i>KCET Seat Matrix Analyser
+                        2023</a></li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-tools"></i> <b>JEE ORCR Kit 2023 </b></h5>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'jee-orcr' %}"><i class="bi bi-patch-check me-1"></i>JEE ORCR by institutes</a>
+                </li>
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'jee-orcr' %}?mode=college"><i class="bi bi-patch-check me-1"></i>JEE ORCR by
+                        college</a></li>
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'jee-orcr' %}?mode=course"><i class="bi bi-patch-check me-1"></i>JEE ORCR by
+                        course</a></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="card-group my-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-heart-pulse"></i> <b>NEET Analysis Kit 2023 </b></h5>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item border-0"><a class="btn btn-light btn-outline-dark"
+                        href="{% url 'neet-seat-matrix' %}"><i class="bi bi-patch-check me-1"></i>NEET Seat Matrix</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card my-3">
+        <div class="card-body">
+            <p>12th Science Student? Writing KCET, NEET, ComedK entrance Exam? Looking for admission to Medical,
+                Engineering,
+                Nursing, Paramedical courses? Seeking admission to Top Best Colleges in Karnataka? </p>
+            <p>Every year 12th Students, especially Science students face lot dilemma about their future? First, they
+                have to
+                make their career choice-Medical, Engineering, Allied Health Science etc…. Then they have to write lot
+                of
+                entrance exams like JEE, NEET, KCET, ComedK etc and try to get a few seats available in reputed
+                colleges. </p>
+            <p>Admission procedure under entrance test in Indian Education System is very complex. There are tens and
+                hundreds
+                of reservation quotas based on caste, religion, language, profession etc. Each college has limited
+                intake of
+                seats and majority percentage of seats are reserved as per government regulations. These reserved seats
+                are
+                further divided among different reservation categories. </p>
+            <p>So, each college end up with having their seat distributed among lots of reservation category. Moreover,
+                admission to these seats is done based on the rankings obtained in entrance exam by the student. Each
+                reservation category seat has different fees structure to be paid by the students.</p>
+            <p>Now students are confused – Which college has how many numbers of seats reserved for which category? What
+                is the
+                cut off rank for different reservation category? What is the fees structure for various reservation
+                category?
+            </p>
+            <p>We at Career University help students to clarify these confusions by bringing them technology solutions
+                which
+                provide them information they require at their fingertips. </p>
+            <br>
+            <p>Using our technology platform Students can now discover:</p>
+            <ol>
+                <li>In which college the course they want to enrol to after 12th is available?</li>
+                <li>Total number of seats available in particular college for particular course (approved intake)?</li>
+                <li>How many seats are available for direct admission under management quota seats in a college?</li>
+                <li>How many reserved seats are available for selected course in their targeted college?</li>
+                <li>What is the cutoff rank for their selected course in their targeted college for various reservation
+                    category?</li>
+                <li>What is the fees structure for the course selected in various colleges for different reservation
+                    category?</li>
+                <li>What is the management quota fees structure for a particular course in a selected college?</li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock content %}

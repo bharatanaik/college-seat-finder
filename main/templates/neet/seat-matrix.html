@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Neet Seat Matrix 2023
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>NEET Seat Matrix 2023</h1>
+    <p>Find out availibility of seats in your preferred institute by state, program, quota. </p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-3 shadow mb-3">
+                <div class="mb-3">
+                    <label for="id_program" class="form-label">Select a Quota:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="AIQS" name="program" id="id_aiq"
+                            onclick="get_program();">
+                        <label class="form-check-label" for="id_aiq">All India Quota Seats</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="SQS" name="program" id="id_sqs"
+                            onclick="get_states();">
+                        <label class="form-check-label" for="id_sqs">State Quota Seats</label>
+                    </div>
+                </div>
+                <div class="mb-3 hidden" id="id_state_form">
+                    <label for="id_state" class="form-label">Select state:</label>
+                    <select id="id_state" class="form-control" onchange="get_program();">
+                    </select>
+                </div>
+                <div class="mb-3 hidden" id="id_program_form">
+                    <label for="id_program" class="form-label">Select a Program:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="MBBS" name="program" id="id_mbbs"
+                            onclick="get_institute_type(this.value);">
+                        <label class="form-check-label" for="id_mbbs">MBBS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="BDS" name="program" id="id_bds"
+                            onclick="get_institute_type(this.value);">
+                        <label class="form-check-label" for="id_bds">BDS</label>
+                    </div>
+                </div>
+                <div class="mb-3 hidden" id="id_institute_type_form">
+                    <label for="id_institute_type" class="form-label">Select Institute Type:</label>
+                    <select id="id_institute_type" class="form-control" onchange="get_institutes(this.value);">
+                    </select>
+                </div>
+                <div class="mb-3 hidden" id="id_institute_form">
+                    <label for="id_institute" class="form-label">Select Institute:</label>
+                    <select class="form-control" id="id_institute" onchange="get_quota(this.value)">
+                    </select>
+                </div>
+                <div class="mb-3 hidden" id="id_quota_form">
+                    <label for="id_quota" class="form-label">Select a Quota</label>
+                    <select class="form-control" id="id_quota" onchange="get_seat_data()">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="seat-data" class="col-md-6">
+        </div>
+    </div>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function get_program() {
+            $("#id_program_form").show();
+        }
+
+        function get_institute_type(program) {
+            const programs = { 'MBBS': ['AIIMS', 'Except Central University', 'Central University', 'Deemed', 'ESI Scheme', 'JIPMER'], 'BDS': ['Except Central University', 'Central University', 'Deemed', 'ESI Scheme', 'Jamia'] };
+            $("#id_institute_type").empty();
+            $("#id_institute_type").append("<option>--select--</option>");
+            programs[program].forEach(element => {
+                $("#id_institute_type").append(`<option value="${element}">${element}</option>`);
+            });
+            $("#id_institute_type_form").show();
+            $('select').select2({});
+        }
+
+        function get_states() {
+            const states = ['Punjab', 'Himachal Pradesh', 'Assam', 'Jammu & Kashmir', 'Gujarat', 'Odissa', 'Telangana', 'Uttar Pradesh', 'Rajasthan', 'Tamil Nadu', 'Maharastra', 'Delhi', 'Bihar', 'Chattisgarh', 'Madhya Pradesh', 'Jharkhand', 'West Bengal', 'Goa', 'Andhra Pradesh', 'Kerala', 'Karnataka', 'Manipur', 'Meghalaya', 'Andaman & Nicobar'];
+            $("#id_state").empty();
+            $("#id_state").append("<option>--select--</option>");
+            states.forEach(element => {
+                $("#id_state").append(`<option value="${element}">${element}</option>`);
+            });
+            $("#id_state_form").show();
+            $('select').select2({});
+        }
+
+        function get_institutes(type) {
+            $(".loader").css("display", "block");
+            var post_data = {
+                "institute_type": type,
+            }
+            if ($("#id_state").val()) {
+                post_data["state"] = $("#id_state").val();
+            }
+            $.post(
+                "neet-seat-matrix/ajax/get-institutes",
+                post_data,
+                function (data, status) {
+                    let institutes = data["institutes"];
+                    $("#id_institute").empty();
+                    $("#id_institute").append("<option>--select--</option>");
+
+                    institutes.forEach(ele => {
+                        $("#id_institute").append(`<option value="${ele}">${ele}</option>`);
+                    })
+                }
+            )
+            $(".loader").css("display", "none");
+            $("#id_institute_form").show();
+            $('select').select2({});
+        }
+
+        function get_quota(institute) {
+            $(".loader").css("display", "block");
+            $.post(
+                "neet-seat-matrix/ajax/get-quota",
+                {
+                    "institute": institute
+                },
+                function (data, status) {
+                    let quotas = data["quotas"];
+                    $("#id_quota").empty();
+                    $("#id_quota").append("<option>--select--</option>");
+                    quotas.forEach(ele => {
+                        $("#id_quota").append(`<option value="${ele}">${ele}</option>`);
+                    })
+                    if (quotas.length == 1) {
+                        $("#id_quota").val(quotas[0]);
+                        get_seat_data();
+                    }
+
+                }
+            )
+            $(".loader").css("display", "none");
+            $("#id_quota_form").show();
+            $('select').select2({});
+        }
+
+        function get_seat_data() {
+            $(".loader").css("display", "block");
+            $.post(
+                "neet-seat-matrix/ajax/get-seat-data",
+                {
+                    "institute": $("#id_institute").val(),
+                    "quota": $("#id_quota").val()
+                },
+                function (data, status) {
+                    if (data["error"]) {
+                        return
+                    }
+
+                    $("#seat-data").html(
+                        `<div class="card shadow mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title"><i class="bi bi-mortarboard me-3"></i>${data["institute"]}</h3>
+                                <p class="card-text">College Code: ${data["college_code"]}</p>
+                            </div>
+                            <div class="card-body">
+                                <h4 class=card-title">Seat Matrix</h4>
+                                <table class="table table-striped">
+                                    <tr><th>OPEN</th><td>${data["open"]}</td></tr>
+                                    <tr><th>OPEN PWD</th><td>${data["open_pwd"]}</td></tr>
+                                    <tr><th>General EWS</th><td>${data["general_ews"]}</td></tr>
+                                    <tr><th>General EWS PWD</th><td>${data["general_ews_pwd"]}</td></tr>
+                                    <tr><th>OBC</th><td>${data["obc"]}</td></tr>
+                                    <tr><th>OBC PWD</th><td>${data["obc_pwd"]}</td></tr>
+                                    <tr><th>SC</th><td>${data["sc"]}</td></tr>
+                                    <tr><th>SC PWD</th><td>${data["sc_pwd"]}</td></tr>
+                                    <tr><th>ST</th><td>${data["st"]}</td></tr>
+                                    <tr><th>ST PWD</th><td>${data["st_pwd"]}</td></tr>
+                                </table>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><b>Total seats: ${data["total_seats"]}</b></p>
+                            </div>
+                        `
+                    );
+                    $('html, body').animate({
+                        scrollTop: $("#seat-data").offset().top - $("nav").height() - 20// minus the nav height
+                    }, "slow");
+                }
+            )
+            $(".loader").css("display", "none");
+        }
+    </script>
+    <div class="loader"></div>
+    <div id="id_scroll_up"></div>
+    <script src="{% static 'js/scrollup.js' %}"></script>
+
+    {% endblock content %}

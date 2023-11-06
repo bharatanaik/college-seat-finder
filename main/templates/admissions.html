@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Admissions at College Seat Finder
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h1>Admissions @ College Seat Finder</h1>
+
+            <p class="card-text">
+                2023 Admissions already over!
+            </p>
+            <p class="card-text">
+                Next 2022 window yet to open
+            </p>
+            <p class="card-text">However you just let us know your choics of <b>course</b> and <b>college</b></p>
+            
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">    
+            <div class="card mt-3">
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_course" class="form-label">Course</label>
+                            <input id="id_course" type="text" class="form-control" name="course">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_college" class="form-label">College</label>
+                            <input id="id_college" type="text" class="form-control" name="college">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Email</label>
+                            <input id="id_email" type="email" class="form-control" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_whatsapp" class="form-label">Whatsapp number</label>
+                            <input id="id_whatsapp" type="text" class="form-control" name="whatsapp">
+                        </div>
+                        <button class="btn btn-primary my-3">Submit</button>
+                        <p>We will update you when Admissions starts</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</div>
+
+
+{% endblock content %}

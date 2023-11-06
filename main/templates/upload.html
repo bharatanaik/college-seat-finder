@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Upload Data | College Seat Finder
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="card my-3 p-2">
+        <div class="alert alert-success" role="alert"></div>
+        <h2 class="card-title">Data Upload Form:</h2>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="id_type" class="form-label">Select File Type:</label>
+                <select class="form-control" id="id_type">
+                    <option value="kcet-data">KCET Cutoff Data</option>
+                    <option value="seat-data">Seat Finder Data</option>
+                    <option value="jee-data">JEE ORCR Data</option>
+                    <option value="neet-seat-data">NEET Seat Matrix Data</option>   
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="id_file" class="form-label">Upload Excel Sheet:</label>
+                <input type="file" class="form-control" id="id_file">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="upload_data()">Submit</button>
+        </div>
+    </div>
+    <div class="card my-3 p-2">
+        <h3 class="card-title p-3">Delete Data:</h3>
+        <div class="list-group">
+            <a href="{% url 'delete' name='kcet-data' %}" class="list-group-item list-group-item-action">KCET Cutoff Data</a>
+            <a href="{% url 'delete' name='seat-data' %}" class="list-group-item list-group-item-action">Seat Finder Data</a>
+            <a href="{% url 'delete' name='jee-data' %}" class="list-group-item list-group-item-action">JEE ORCR Data</a>
+            <a href="{% url 'delete' name='neet-seat-data' %}" class="list-group-item list-group-item-action">NEET Seat Data</a>            
+        </div>
+    </div>
+    <div class="loader"></div>
+    <style>.alert{display: none;}</style>
+    <script src="{% static 'js/upload.js' %}"></script>
+{% endblock content %}

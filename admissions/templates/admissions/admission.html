@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <div class="card my-2">
+        <div class="card-body">
+            <h1>Apply for Management Seats </h1>
+            <p class="text-success">Only Website to Apply for Management Quota Seats in All the Colleges of Karnataka
+                State</p>
+            <p><i>***This is a beta version available for UG admission in Colleges belonging to Karnataka State only
+                </i></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h3>Instructions</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">1. New Users: Please click on "Student Registration" button to register.
+                    </li>
+                    <li class="list-group-item">2. Already Registered User : Please enter User ID (Registration Id/Mobile
+                        Number/Email Address) and Password; click on "Student Login" and continue.</li>
+                    <li class="list-group-item">3. Forgot Password: Click on "Forgot Password" to generate new password.
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <h3>List of Documents to be uploaded online by the applicant:</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        1.Passport size photograph
+                        (Only JPG/JPEG/PNG and upto 50 KB file allowed)
+                    </li>
+                    <li class="list-group-item">
+                        2. Applicant signature
+                        (Only JPG/JPEG/PNG and upto 20 KB file allowed)
+                    </li>
+                    <li class="list-group-item">
+                        3. 10th & 12th Marksheet
+                        (Only JPG/JPEG/PNG/PDF and upto 300 KB file allowed)
+                    </li>
+                    <li class="list-group-item">
+                        4. Migration Certificate (In case of Students Outside Karnataka)
+                        (Only JPG/JPEG/PNG/PDF and upto 300 KB file allowed)
+                    </li>
+                    <li class="list-group-item">5. KCET, NEET, JEE etc Rank / Score Card if applicable </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="text-center my-3"><a href="{% url 'register' %}" class="btn btn-warning">New User? Register</a></div>
+            <h1 class="text-center">OR</h1>
+            <div id="login-form">
+                <div class="mb-3">
+                    <label class="form-label" for="id_username">Enter username: </label>
+                    <input class="form-control" type="text" name="username" id="id_username">
+                </div>
+                <div class="mb-3">
+                    <label for="id_password" class="form-label">Enter password: `</label>
+                    <input type="password" class="form-control">
+                </div>
+                <button class="btn btn-warning me-3">Login</button>
+                <a href="#" class="btn-link btn-outline-warning">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

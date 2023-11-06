@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+KCET Cutoff Rank Analyser
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="p-3 my-2 ">
+        <h1>KCET Cutoff Rank Analyser 2023</h1>
+        <p>Find out in which and all colleges you can get admission for your preferred course based on the CET Rank you
+            obtained.</p>
+    </div>
+    <div class="row my-3">
+        <div class="col-md-6">
+            <div class="card shadow p-3 mb-3">
+                <div class="mb-3">
+                    <label for="id_course_category" class="form-label"><b>Select Your Course Category Under CET:</b></label>
+                    <select class="form-control" id="id_course_category" onchange="get_courses(this.value);">
+                        <option>--select--</option>
+                        {% for type in types %}
+                        <option value="{{ type }}">{{ type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_course" class="form-label"><b>Select your preferred course:</b></label>
+                    <select class="form-control" id="id_course" onchange="get_cutoff_table()">
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_kcet_rank" class="form-label"><b>Enter your KCET rank</b></label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="id_kcet_rank" aria-describedby="basic-addon2">
+                        <span role="button" class="input-group-text" id="basic-addon2" onclick="get_cutoff_table()"><i class="bi bi-search"></i>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="id_category" class="form-label"><b>Choose your reservation Category</b></label>
+                    <select class="form-control" id="id_category" onchange="get_cutoff_table()">
+                        <option>--select--</option>
+                        {% for i in categories %}
+                        <option value="{{i.name }}">{{ i.verbose_name }}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="mb-3">
+                    <label for="id_round" class="form-label"><b>Select KCET Round:</b></label>
+                    <select class="form-select" id="id_round" onchange="get_cutoff_table()">
+                        <option value="Round 1">1st Round</option>
+                        <option value="Round 2">2nd Round</option>
+                        <option value="Round 2 Extended">2nd extended Round</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="scroll_focus" class="col-md-6">
+        </div>
+    </div>
+    {% include 'page_description/kcet-cutoff.html' %}
+</div>
+
+<div class="loader"></div>
+<i id="id_scroll_up"></i>
+<script src="{% static 'js/cutoff.js' %}?v=2"></script>
+<script src="{% static 'js/scrollup.js' %}"></script>
+<style>
+    div p{
+        text-align: justify;
+    }
+</style>
+
+{% endblock content %}

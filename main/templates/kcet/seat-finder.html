@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+College Seat Analyser
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <h1>Find out seat availability in Colleges in 2023</h1>
+    <p>Find out availibility of seats in your preferred college by course, district and  based on your Reservation Category</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-3 shadow mb-3">
+                <div class="mb-3">
+                    <label for="id_category" class="form-label">Select a Course Category:</label>
+                    <select class="form-control" id="id_category" onchange="get_courses(this.value)">
+                        <option>--select--</option>
+                        {% for i in types %}
+                        <option value="{{i}}">{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_course" class="form-label">Select a Course:</label>
+                    <select class="form-control" id="id_course" onchange="both()">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_district" class="form-label">Select a Region / City / District:</label>
+                    <select class="form-control" id="id_district" onchange="get_colleges()">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_college" class="form-label">Select a College:</label>
+                    <select class="form-control" id="id_college" onchange="get_seat_matrix()">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_seat_type" class="form-label">Select a Seat Type:</label>
+                    <select class="form-control" id="id_seat_type" onchange="get_seat_matrix()">
+                        {% for i in seat_types %}
+                        <option value="{{i }}">{{ i }}</option>
+                        {% endfor %}    
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_reservation" class="form-label">Select Reservation Category:</label>
+                    <select class="form-control" id="id_reservation" onchange="get_seat_matrix()">
+                        <option>--select--</option>
+                        {% for i in categories %}
+                        <option value="{{i.name }}">{{ i.verbose_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pb-3" id="scroll_to_me">
+            <div id="id_seat_matrix_table">
+            </div>
+        </div>
+    </div>
+    {% include 'page_description/kcet-seat.html' %}
+</div>
+
+<div class="loader"></div>
+<div id="id_scroll_up"></div>
+<script src="{% static 'js/seatfinder.js' %}?v=1"></script>
+<script src="{% static 'js/scrollup.js' %}"></script>
+
+{% endblock content %}
+

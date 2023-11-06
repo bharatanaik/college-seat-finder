@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1 id="heading">EXPLORE KCET COURSES</h1>
+        <div id="course-types">
+            <div class="card shadow mt-3">
+                <b class="card-title p-2">Select a Course Type</b>
+                <ul class="list-group">
+                    {% for i in types %}
+                    <li class="list-group-item"><button onclick="get_courses(this.value)" class="btn btn-outline-dark" value="{{ i }}">{{ i }}</button></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    get_courses = (type) => {
+        $.post(
+            "kcet-cutoff/ajax/get-courses",
+            {
+                "_type": type
+            },
+            function (data, status) {
+                $("#course-types").addClass("col-md-4");
+                $(".row").append('<div class="col-md-8" id="courses"></div>');
+                $("#courses").addClass("card shadow mt-3");
+                var courses = data["courses"];
+                $("#courses").empty();
+                $("#courses").append(`<h3 id='course-heading' class='mt-3'>Courses available in ${type}</h3>`);
+                $("#courses").append("<input id='search-bar' onkeyup='search();' class='form-control my-2' placeholder='search course...' type='search' autofocus>");
+                $("#courses").append("<ul class='list-group' id='course-list'></ul>");
+                courses.reverse();
+                courses.forEach(element => {
+                    $("#course-list").append(
+                        `<li class='list-group-item'><button class='btn btn-outline-dark my-2 ' onclick='get_colleges(this.value);' value='${element}'> ${element}</button></li>`
+                    )
+                });
+                
+                document.getElementById("course-heading").scrollIntoView();
+                
+            }
+        )
+    }
+
+    get_colleges = (course)=>{
+        console.log(course);
+        $.post(
+            "college-cutoff/ajax/get-colleges",
+            {
+                "_course_name": course
+            },
+            function (data, status) {
+                console.log(data);
+                var colleges = data["colleges"];
+                $("#courses").empty();
+                $("#courses").append(`<h3 id='course-heading' class='mt-3'>Colleges available in ${course}</h3>`);
+                $("#courses").append("<input id='search-bar' onkeyup='search();' class='form-control my-2' placeholder='search college...' type='search' autofocus>");
+                $("#courses").append("<ul class='list-group' id='course-list'></ul>");
+                colleges.forEach(element => {
+                    var college_name = element[1];
+                    // var college_slug = college_name.replace(" ", "-");
+                    $("#course-list").append(
+                        `<li class='list-group-item'><button class='btn btn-outline-dark my-2 ' onclick='location.href="/college/${college_name}"'> ${college_name}</button></li>`
+                    )
+                });
+                
+                document.getElementById("course-heading").scrollIntoView();
+                
+            }
+        )
+    }
+
+</script>
+
+<script>
+    function search() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('search-bar');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("course-list");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("button")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+<i id="id_scroll_up"></i>
+<script src="{% static 'js/scrollup.js' %}"></script>
+
+{% endblock content %}

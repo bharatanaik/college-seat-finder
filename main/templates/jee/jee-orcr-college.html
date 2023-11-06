@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}
+JEE OPENING AND CLOSING RANK
+{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <h1>Check out JEE ORCR of different courses by colleges</h1>
+    <div class="row">
+        <div class="col-md-6">    
+            <div class="card p-3 shadow mb-3">
+                <div class="mb-3">
+                    <label for="id_institute_type" class="form-label">Institute Type:</label>
+                    <select class="form-control" id="id_institute_type" onchange="get_institutes(this.value)">
+                        <option value="--select--" selected>--select--</option>
+                        {% for i, j in institute_types %}
+                        <option value="{{i}}">{{j}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_academic_year" class="form-label">Select the Academic Year:</label>
+                    <select class="form-control" id="id_academic_year" onchange="get_college_result()">
+                        {% for i, j in years %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_institute_name" class="form-label">Name of the Institute:</label>
+                    <select class="form-control" id="id_institute_name" onchange="get_college_result()">
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_quota" class="form-label">Quota:</label>
+                    <select class="form-control" id="id_quota" onchange="get_college_result()">
+                        {% for i, j in quotas %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_seat_type" class="form-label">Seat category type:</label>
+                    <select class="form-control" id="id_seat_type" onchange="get_college_result()">
+                        {% for i, j in seat_types %}
+                        <option value="{{ i }}">{{ j }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_gender" class="form-label">Gender:</label>
+                    <select class="form-control" id="id_gender" onchange="get_college_result()">
+                        <option value="Gender-Neutral" selected>Gender-Neutral</option>
+                        <option value="Female-only (including Supernumerary)">Female-only (including Supernumerary)
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="id_round" class="form-label">Counselling round:</label>
+                    <select class="form-control" id="id_round" onchange="get_college_result()">
+                        {% for i, j in rounds %}
+                        <option value="{{i}}">{{j}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 pb-3" id="scroll_to_me">
+            <div id="id_result" style="display: none;">
+                <div class="card shadow border">
+                    <h2 id="institute_name" class="card-title m-3"></h2>
+                    <table class="table">
+                        <thead>
+                            <tr><th>Course</th><th>Opening <br>Rank</th><th>Closing <br>Rank</th></tr>
+                        </thead>
+                    <tbody id="result_table">
+                    </tbody>
+                </table>
+                <p class="m-2 text-muted"> If Opening or Closing Rank Contains 'P', it indicates that the
+                    corresponding rank is from Preparatory Rank List.</p>
+                <p class="m-2 text-muted">Data / Information Courtesy of: JoSAA - Joint Seat Allocation Authority &
+                    NIC - National Informatics Centre</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader"></div>
+<i id="id_scroll_up"></i>
+<script src="{% static 'js/scrollup.js' %}"></script>
+<script src="{% static 'js/jee-orcr.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+    content="College seat finder is one of the best tool in 2022 for a 12th Science Student who is writing JEE, KCET, NEET, ComedK entrance exam. Looking for admission to Medical, Engineering, Nursing, Paramedical courses? Seeking admission to Top Best Colleges in Karnataka? Its right here.">
+  <title>
+    {% block title %}
+    {% endblock title %}
+  </title>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="shortcut icon" href="{% static 'images\favicon-16x16.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0243NMGYMR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-0243NMGYMR');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9693044634619564"
+    crossorigin="anonymous"></script>
+  <link href="{% static 'css/font.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+</head>
+<style>
+  * {
+    font-family: 'Poppins', sans-serif;
+  }
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'images/logo.png' %}" alt="career university logo" width="50" height="50"
+          class="d-inline-block align-text-middle">
+        <b class="text-primary">College Seat Finder</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'courses' %}">Courses</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'disclaimer' %}">Disclaimer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://npuspta.org/apply-scholorship" target="_blank">Apply for scholorship</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admissions' %}" target="_blank">Apply for Management Seats</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+
+  {% endblock content %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script defer="defer" src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('select').select2({
+      });
+    });
+  </script>
+</body>
+
+</html>

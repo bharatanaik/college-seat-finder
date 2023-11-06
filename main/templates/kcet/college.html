@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% if college %}
+    
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h3 class="card-title">
+                    {{ college.college_name }}
+                </h3>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><i class="bi bi-geo-alt-fill"></i> {{college.district | default:"Not Available"}}</h6>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th> College code </th>
+                            <td>{{ college.college_code | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> Short name </th>
+                            <td>{{ college.college_short_name | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> Operation </th>
+                            <td>{{ college.college_operation | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> Ownership </th>
+                            <td>{{ college.college_ownership_type | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> College Type </th>
+                            <td>{{ college.course_type | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> Affiliation </th>
+                            <td>{{ college.affiliation | default:"Not Available"}}</td>
+                        </tr>
+                        <tr>
+                            <th> Accreditation </th>
+                            <td>{{ college.accreditation | default:"Not Available"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="card-footer">
+                    <p class="card-text">Contact details</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="bi bi-telephone me-3"></i> {{ college.contact_number | default:"Not Available"}}</li>
+                        <li class="list-group-item"><i class="bi bi-envelope-at me-3"> </i>{{ college.email_i_d | default:"Not Available"}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow">
+                <h5 class="card-title p-3">
+                    <b>Courses list</b>
+                </h5>
+                <ul class="list-group">
+                {% for course in courses %}
+                    <li class="list-group-item">{{ course }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    {% else %}
+    <h1 class="bg-warning p-3 m-3">Sorry! College Not found!!</h1>
+
+    {% endif %}
+</div>
+{% endblock content %}
