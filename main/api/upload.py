@@ -19,12 +19,15 @@ class UploadAPI:
 
     def run(self):
         fields = [i.name for i in self.model._meta.fields]
-        print(fields)
         fields.remove("id")
         objects = []
+        count = 0
         for row in self.wb.iter_rows(min_row=2, values_only = True):
-            data = dict(zip(fields, row))   
-            print(data)         
+            data = dict(zip(fields, row))
             objects.append(self.model(**data))
+            count+=1
+            print(f"Adding row {count}", end="\r")
+        print("Creating rows in database...")
         self.model.objects.bulk_create(objects)
+        print(f"{self.model.objects.count()} rows created")
         return {"count":self.model.objects.count()}

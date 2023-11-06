@@ -3,7 +3,6 @@ from django.db import models
 
 pair = lambda x: ((i, i) for i in x)
 
-
 class Cutoff(models.Model):
     _year = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Year')
     _round = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Round')
@@ -12,7 +11,7 @@ class Cutoff(models.Model):
     _college_name = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'College Name')
     _course_code = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Course Code')
     _course_name = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Course Name')
-    _1g = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = '1G')
+    _1g = models.IntegerField(null = True, blank = True, verbose_name = '1G')
     _1k = models.IntegerField(null = True, blank = True, verbose_name = '1K')
     _1r = models.IntegerField(null = True, blank = True, verbose_name = '1R')
     _2ag = models.IntegerField(null = True, blank = True, verbose_name = '2AG')
@@ -260,7 +259,7 @@ class JEEORCR(models.Model):
     
 
 class NEETSeatMatrix(models.Model):
-    INSTITUTE_TYPE = ('AIIMS', 'Except Central University', 'Central University', 'Deemed', 'ESI Scheme', 'Jamia', 'JIPMER')
+    INSTITUTE_TYPE = ('AIIMS', 'Except Central University', 'Central University', 'Deemed University', 'ESI Scheme', 'Jamia', 'JIPMER')
     STATES = ('Punjab', 'Himachal Pradesh', 'Assam', 'Jammu & Kashmir', 'Gujarat', 'Odissa', 'Telangana', 'Uttar Pradesh', 'Rajasthan', 'Tamil Nadu', 'Maharastra', 'Delhi', 'Bihar', 'Chattisgarh', 'Madhya Pradesh', 'Jharkhand', 'West Bengal', 'Goa', 'Andhra Pradesh', 'Kerala', 'Karnataka', 'Manipur', 'Meghalaya', 'Andaman & Nicobar')
     PROGRAM = ('MBBS', 'BDS')
     QUOTA = ('Open Seat Quota', 'Foreign Country Quota', 'All India', 'Aligarh Muslim University (AMU) Quota', 'Non-Resident\nIndian(AMU)Quota', 'IP University Quota', 'Delhi University Quota', 'Delhi NCR Children/Widows of Personnel of the Armed Forces (CW) Quota', 'Non-Resident Indian', 'Deemed/Paid Seats Quota', 'Jain Minority Quota', 'Muslim Minority Quota', 'Employees State Insurance Scheme(ESI)', 'Employees State Insurance\nScheme(ESI)', 'Jamia Internal Quota', 'Muslim OBC Quota', 'Muslim ST Quota', 'Muslim Quota', 'Muslim Women Quota', 'Internal -Puducherry UT\nDomicile')
@@ -272,6 +271,7 @@ class NEETSeatMatrix(models.Model):
     college_code = models.IntegerField(null=True, blank = True)
     program = models.CharField(max_length = 5, null=True, blank = True, choices=pair(PROGRAM))
     affiliation = models.CharField(max_length = 150, null=True, blank = True)
+    gender = models.CharField(max_length=100, null=True, blank=True)
     quota = models.CharField(max_length = 80, null=True, blank = True, choices=pair(QUOTA))
     open = models.IntegerField(null=True, blank = True)
     open_pwd = models.IntegerField(null=True, blank = True)
@@ -284,3 +284,7 @@ class NEETSeatMatrix(models.Model):
     st = models.IntegerField(null=True, blank = True)
     st_pwd = models.IntegerField(null=True, blank = True)
     total_seats = models.IntegerField(null=True, blank = True)
+
+
+#05S@=ym^AO~e
+# class Admission(models.Model):

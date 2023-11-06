@@ -63,11 +63,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "iapshoyw_collegeseatfinder",
+        "USER": "iapshoyw_user",
+        "PASSWORD": r"WK0meaH%F3@i",
+        "HOST": "localhost",
+        "PORT": 3306,
     }
 }
+
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True

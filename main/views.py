@@ -8,6 +8,8 @@ from main.api.upload import UploadAPI
 from main.api.jee import JEEAPI
 from main.api.neet import NEETSeatMatrixAPI
 
+
+
 class UploadView:
     @csrf_exempt
     def main(self, request):
