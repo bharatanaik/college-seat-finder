@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '6sv^9hz4tyvu#9rf344*)a9#te_qd@v#6c3j#og)up(x6f$@v*'
 
 # Change DEBUG to False before uploading to github
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '192.168.43.93', 'collegeseatfinder.com']
 
@@ -68,7 +68,7 @@ DATABASES = {
         "NAME": "iapshoyw_collegeseatfinder",
         "USER": "iapshoyw_user",
         "PASSWORD": r"WK0meaH%F3@i",
-        "HOST": "localhost",
+        "HOST": "npuspta.org",
         "PORT": 3306,
     }
 }

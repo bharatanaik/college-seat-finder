@@ -1,12 +1,15 @@
-from django.http import JsonResponse
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import *
 from django.views.decorators.csrf import csrf_exempt
+from openpyxl import Workbook
 from main.api.kcet import *
 from main.api.upload import UploadAPI
 from main.api.jee import JEEAPI
 from main.api.neet import NEETSeatMatrixAPI
+from main.models import Admission
 
 
 
@@ -150,3 +153,42 @@ class NEETSeatMatrixView(NEETSeatMatrixAPI):
     def get_seat_data(self, request):
         return JsonResponse(self._seat_data(**request.POST))
     
+
+
+def admissions(request):
+    context = {}
+    if request.method == "POST":
+        Admission(course = request.POST["course"], college=request.POST["college"], email=request.POST["email"], whatsapp_no=request.POST["whatsapp_no"]).save()
+        context["submit"] = True
+    return render(request, "admissions.html", context)
+
+
+
+from io import BytesIO
+
+def generate_excel_file():
+    workbook = Workbook()
+    sheet = workbook.active
+    # Add column headers
+    sheet['A1'] = 'Course'
+    sheet['B1'] = 'College'
+    sheet['C1'] = 'Email'
+    sheet['D1'] = 'WhatsApp Number'
+    admissions = Admission.objects.all()
+    row_num = 2 
+    for admission in admissions:
+        sheet.cell(row=row_num, column=1, value=admission.course)
+        sheet.cell(row=row_num, column=2, value=admission.college)
+        sheet.cell(row=row_num, column=3, value=admission.email)
+        sheet.cell(row=row_num, column=4, value=admission.whatsapp_no)
+        row_num += 1
+    return workbook
+
+def excel_export_view(request):
+    workbook = generate_excel_file()
+    buffer = BytesIO()
+    workbook.save(buffer)
+    buffer.seek(0)
+    response = HttpResponse(buffer.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=admissions_report.xlsx'
+    return response

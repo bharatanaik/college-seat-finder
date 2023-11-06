@@ -93,8 +93,6 @@ class SeatMatrix(models.Model):
     _college_short_name = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'College Short Name')
     _college_name = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'College Name')
     _course_name = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Course Name')
-    _affiliation = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Affiliation')
-    _accreditation = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Accreditation')
     _govt_fees = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Govt Fees')
     _management_fees = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Management Fees')
     _email_i_d = models.CharField(max_length = 1000, null = True, blank = True, verbose_name = 'Email I D')
@@ -287,4 +285,11 @@ class NEETSeatMatrix(models.Model):
 
 
 #05S@=ym^AO~e
-# class Admission(models.Model):
+class Admission(models.Model):
+    course = models.CharField(max_length=1000)
+    college = models.CharField(max_length=1000)
+    email = models.EmailField()
+    whatsapp_no = models.CharField(max_length=12)
+
+    def __str__(self) -> str:
+        return self.email

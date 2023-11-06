@@ -26,7 +26,8 @@ class UploadAPI:
             data = dict(zip(fields, row))
             objects.append(self.model(**data))
             count+=1
-            print(f"Adding row {count}", end="\r")
+            print(data)
+            print(f"Adding row {count}")
         print("Creating rows in database...")
         self.model.objects.bulk_create(objects)
         print(f"{self.model.objects.count()} rows created")

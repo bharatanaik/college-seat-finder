@@ -6,7 +6,14 @@ Admissions at College Seat Finder
 
 {% block content %}
 
+
+
 <div class="container">
+    {% if user.is_superuser %}
+
+    <a class="btn btn-primary mb-3" href="/admissions/export-excel">Export Excel</a>
+    
+    {% endif %}
     <div class="card">
         <div class="card-body">
             <h1>Admissions @ College Seat Finder</h1>
@@ -15,13 +22,24 @@ Admissions at College Seat Finder
                 2023 Admissions already over!
             </p>
             <p class="card-text">
-                Next 2022 window yet to open
+                Next 2024 window yet to open
             </p>
             <p class="card-text">However you just let us know your choics of <b>course</b> and <b>college</b></p>
             
         </div>
 
     </div>
+    {% if submit %}
+
+    <div class="card m-3">
+        <div class="card-body">
+            <div class="alert alert-success">
+                Thank you for submitting the form, we will update you soon!
+            </div>
+        </div>
+    </div>
+    
+    {% endif %}
     <div class="row">
         <div class="col-md-6">    
             <div class="card mt-3">
@@ -42,7 +60,7 @@ Admissions at College Seat Finder
                         </div>
                         <div class="mb-3">
                             <label for="id_whatsapp" class="form-label">Whatsapp number</label>
-                            <input id="id_whatsapp" type="text" class="form-control" name="whatsapp">
+                            <input id="id_whatsapp" type="text" class="form-control" name="whatsapp_no">
                         </div>
                         <button class="btn btn-primary my-3">Submit</button>
                         <p>We will update you when Admissions starts</p>

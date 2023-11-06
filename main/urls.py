@@ -54,7 +54,7 @@ urlpatterns = [
     path("neet-seat-matrix/ajax/get-seat-data", NEETSeatMatrixView().get_seat_data),
 
     #Admissions
-    path('admissions', TemplateView.as_view(template_name="admissions.html"), name="admissions")
-    
+    path('admissions', admissions, name="admissions"),
+    path('admissions/export-excel/', excel_export_view, name='export-excel'),
     
 ]
