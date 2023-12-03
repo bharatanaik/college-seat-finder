@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Step 5: Upload the Documents</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <p class="text-muted text-center"> This form only accepts .jpg, .jpeg, .png, .pdf</p>
+                    <div class="mb-3">
+                        <label>Identification Proof (Aadhar Card / Voter Id etc) <span
+                                class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="identification_file"
+                            accept=".jpg, .jpeg, .png, .pdf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>12th Marks card (Upload only If Available)</label>
+                        <input type="file" class="form-control" name="12th_marks_card" accept=".jpg, .jpeg, .png, .pdf">
+                    </div>
+                    <div class="mb-3">
+                        <label>10th Marks Card <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="10th_marks_card" accept=".jpg, .jpeg, .png, .pdf"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Your passport size photo<span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="passport_size_photo"
+                            accept=".jpg, .jpeg, .png, .pdf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Signature Copy <span class="text-danger">*</span> </label>
+                        <input type="file" class="form-control" name="signature" accept=".jpg, .jpeg, .png, .pdf"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Migration Certificate (for students outside karnataka only) </label>
+                        <input type="file" class="form-control" name="migration_certificate"
+                            accept=".jpg, .jpeg, .png, .pdf">
+                    </div>
+                    <div class="mb-3">
+                        <label>KCET, NEET, JEE etc Rank / Score Card (Upload if available only)</label>
+                        <input type="file" class="form-control" name="score_card" accept=".jpg, .jpeg, .png, .pdf">
+                    </div>
+                    <p class="text-center"><button class="btn btn-warning btn-lg" type="submit">Next</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+{% endblock content %}

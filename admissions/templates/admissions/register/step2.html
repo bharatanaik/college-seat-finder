@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Step 2: The Course you are seeking admission to </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}                  
+                    <div class="mb-3">
+                        <label for="id_course_category" class="form-label">Course Category (Engineernig, Agriculture, etc)  <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id_course_category" name="course_category" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_course" class="form-label">Course Name (Computer Science, Information Science, etc) <span class="text-danger">*</span></label>
+                        <input id="id_course" type="text" class="form-control" name="course" required>
+                    </div>
+                    <p class="text-center"><button class="btn btn-warning btn-lg" type="submit">Next</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+{% endblock content %}

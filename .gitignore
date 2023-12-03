@@ -3,3 +3,4 @@ __pycache__/
 desktop.ini
 db.sqlite3
 excel/
+content/

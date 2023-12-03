@@ -8,7 +8,7 @@ SECRET_KEY = '6sv^9hz4tyvu#9rf344*)a9#te_qd@v#6c3j#og)up(x6f$@v*'
 # Change DEBUG to False before uploading to github
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.43.93', 'collegeseatfinder.com']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'main','admissions',
@@ -68,11 +68,23 @@ DATABASES = {
         "NAME": "iapshoyw_collegeseatfinder",
         "USER": "iapshoyw_user",
         "PASSWORD": r"WK0meaH%F3@i",
-        "HOST": "npuspta.org",
+        "HOST": "localhost",
         "PORT": 3306,
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 
+
+# DATABASES = {
+#     "default":{
+#         "ENGINE":"django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3"
+#     }
+# }
+
+LOGOUT_REDIRECT_URL = "index"
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'

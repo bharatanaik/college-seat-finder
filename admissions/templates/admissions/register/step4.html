@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Step 4: Fill the Education Qualification </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_year">Year in which you passed 12th <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="id_year" name="year" required>
+                    </div>
+                    <div class="mb-3">
+                        <p>Examination Board <span class="text-danger">*</span></p>
+                        <select class="form-select"  name="board" id="id_board" required>
+                            <option value="Karnataka PU Board">Karanataka PU Board</option>
+                            <option value="Kerala DHSE">Kerala DHSE</option>
+                            <option value="CBSE">CBSE</option>
+                            <option value="ICSE">ICSE</option>
+                        </select> 
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_school" class="form-label">Name of School / College in which you study
+                            12th <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id_school" name="school">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_percentage" class="form-label">12th Passing Grade or Percentage <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="id_percentage" name="percentage">
+                    </div>
+                    <div class="mb-3">
+                        <p>Have you written any of the Entrance Exam this year? <span class="text-danger">*</span></p>
+                        <select class="form-select"  name="entrance" id="id_entrence">
+                            <option value="None">--select--</option>
+                            <option value="KCET">KCET</option>
+                            <option value="NEET">NEET</option>
+                            <option value="JEE">JEE</option>
+                            <option value="JEE Advanced">JEE Advanced</option>
+                            <option value="NATA">NATA</option>
+                        </select>
+                    </div>
+                    <p class="text-center"><button class="btn btn-warning btn-lg" type="submit">Next</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+{% endblock content %}

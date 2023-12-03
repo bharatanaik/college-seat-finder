@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Step 1: Introduction</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {% if error %}
+                    <div class="alert alert-danger">
+                        User with this email already exists, go back and login
+                    </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Full Name <span class="text-danger">*</span>
+                        </label>
+                        <span class="text-muted">(As per 10th and 12th Record)</span>
+                        <input id="id_name" type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_birth_date" class="form-label">Date of Birth: <span class="text-danger">*</span></label>
+                        <input id="id_birth_date" type="date" class="form-control" name="birth_date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_father_name" class="form-label">Father / Guardian Name: <span class="text-danger">*</span></label>
+                        <input id="id_father_name" type="text" class="form-control" name="guardian_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contact" class="form-label"> Contact No:<span class="text-danger">*</span></label>
+                        <input id="id_contact" type="number" class="form-control" name="contact" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_alt_contact" class="form-label">Alternate Contact No:<span class="text-danger">*</span></label>
+                        <input id="id_alt_contact" type="number" class="form-control" name="alt_contact" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_email" class="form-label">Email Id:<span class="text-danger">*</span></label>
+                        <input id="id_email" type="text" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label">Password:<span class="text-danger">*</span></label>
+                        <input id="id_password" type="password" class="form-control" name="password" required>
+                    </div>
+                    <p class="text-center"><button class="btn btn-warning btn-lg" type="submit">Next</button></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+
+{% endblock content %}

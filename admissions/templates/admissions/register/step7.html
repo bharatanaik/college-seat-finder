@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card border-success m-2">
+            <div class="card-header bg-success text-light">Application submitted successfully.</div>
+            <div class="card-body">
+                <p>Dear <b>{{ name }}</b>,</p>
+
+                <p>Thank you for applying to <b>{{ college }}</b> for <b>{{ course }}</b>. </p>
+                <p>College will scrutinize your application and will contact you soon.</p>
+                <p><br>All the best...</p>
+                <p><br><br>- College Seat Finder Team</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+{% endblock content %}

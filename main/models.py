@@ -285,11 +285,3 @@ class NEETSeatMatrix(models.Model):
 
 
 #05S@=ym^AO~e
-class Admission(models.Model):
-    course = models.CharField(max_length=1000)
-    college = models.CharField(max_length=1000)
-    email = models.EmailField()
-    whatsapp_no = models.CharField(max_length=12)
-
-    def __str__(self) -> str:
-        return self.email

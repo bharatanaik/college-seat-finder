@@ -28,16 +28,19 @@ class JEEAPI:
             result = JEEORCR.objects.get(**parser(data))
             return {"opening_rank":result.opening_rank, "closing_rank":result.closing_rank }
         except Exception as e:
+            print(e)
             return {"opening_rank":"Not found", "closing_rank":"Not found"}
         
     def _courses_via_college(self, **data):
         try:
             return {"college_orcr":list(JEEORCR.objects.filter(**parser(data)).values_list("course", "opening_rank", "closing_rank"))}
         except Exception as e:
+            print(e)
             return {}
         
     def _colleges_via_course(self, **data):
         try:
             return {"course_orcr" : list(JEEORCR.objects.filter(**parser(data)).distinct().order_by("institute").values_list("institute", "opening_rank", "closing_rank"))}
         except Exception as e:
+            print(e)
             return {}

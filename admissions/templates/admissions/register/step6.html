@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'admissions/register/header.html' %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Step 6: Disclaimer </h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <p>I understand that application & admission is subject to seat availability.				</p>
+                    <p>I Understand that All Application & Admission are Provisional, Subject to Scrutiny & Approval by respective college & University				</p>
+                    <p>I Understant that APPLICATIONS SUBMITTED WITH FALSE OR, FAKE INFORMATION AND ON WRONG/IMPROPER DOCUMENTATION ARE LIABLE TO BE CANCELLED AND NO REFUND OF APPLICATION AND/OR, ADMISSION FEES WOULD BE MADE AFTERWARDS.				</p>
+                    <p>Im aware that Candidates are required to submit mandatory documents to the College during the period admission process. Physical presence in College is required at final stage in the admission process.				</p>
+                    <p>I declare that being applicant I satisfy the eligibility norms as laid down in the “Eligibility Criteria”				</p>
+                    <p>I declare that I have read the prospectus of the college Im applying to & fully aware of all the details about the college before finalizing.				</p>                
+                    <p>I have read and understood all the information.				</p>
+                    <p class="text-center my-4"><button class="btn btn-warning btn-lg" type="submit">Apply</button></p>   
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+{% endblock content %}

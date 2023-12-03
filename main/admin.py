@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import Cutoff, SeatMatrix, JEEORCR, NEETSeatMatrix, Admission
+from main.models import Cutoff, SeatMatrix, JEEORCR, NEETSeatMatrix
 from django.contrib.admin import VERTICAL, HORIZONTAL
 
 
@@ -35,7 +35,3 @@ class NEETSeatMatrix(admin.ModelAdmin):
     list_display = ("institute", "college_code")
     list_filter = ("program", "quota", "institute_type")
 
-
-@admin.register(Admission)
-class AdmissionAdmin(admin.ModelAdmin):
-    pass

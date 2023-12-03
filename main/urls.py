@@ -13,8 +13,6 @@ urlpatterns = [
      name='django.contrib.sitemaps.views.sitemap'),
 
     path('', IndexView.as_view(), name="index"),
-    path('upload', UploadView().main, name="upload"),
-    path('delete/<str:name>', UploadView().delete, name="delete"),
     path('disclaimer', TemplateView.as_view(template_name="disclaimer.html"), name="disclaimer"),
     
 
@@ -52,9 +50,4 @@ urlpatterns = [
     path("neet-seat-matrix/ajax/get-institutes", NEETSeatMatrixView().get_institutes),
     path("neet-seat-matrix/ajax/get-quota", NEETSeatMatrixView().get_quota),
     path("neet-seat-matrix/ajax/get-seat-data", NEETSeatMatrixView().get_seat_data),
-
-    #Admissions
-    path('admissions', admissions, name="admissions"),
-    path('admissions/export-excel/', excel_export_view, name='export-excel'),
-    
 ]
