@@ -7,7 +7,6 @@ SECRET_KEY = '6sv^9hz4tyvu#9rf344*)a9#te_qd@v#6c3j#og)up(x6f$@v*'
 
 # Change DEBUG to False before uploading to github
 DEBUG = False
-
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -62,13 +61,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "iapshoyw_collegeseatfinder",
         "USER": "iapshoyw_user",
         "PASSWORD": r"WK0meaH%F3@i",
-        "HOST": "localhost",
+        "HOST": "npuspta.org",
         "PORT": 3306,
         'OPTIONS': {
             'sql_mode': 'traditional',

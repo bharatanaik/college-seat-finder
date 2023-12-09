@@ -15,19 +15,10 @@ class CLoginView(LoginView):
     def get_success_url(self) -> str:
         return reverse("register")
     
-    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
-        print(form.errors)
-        return super().form_valid(form)
-    
-    def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
-        print(form.errors)
-        return super().form_invalid(form)
-
 class RegisterView:
     """
     This view serve the purpose of registering the user
     """
-
     @staticmethod
     def register(request: HttpRequest):
         if not request.user.is_authenticated:
