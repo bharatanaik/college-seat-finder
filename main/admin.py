@@ -2,7 +2,6 @@ from django.contrib import admin
 from main.models import Cutoff, SeatMatrix, JEEORCR, NEETSeatMatrix
 from django.contrib.admin import VERTICAL, HORIZONTAL
 
-
 admin.site.site_header = "College Seat Finder admin"  
 admin.site.site_title  = "College Seat Finder admin site"
 admin.site.index_title = "College Seat Finder Admin"
